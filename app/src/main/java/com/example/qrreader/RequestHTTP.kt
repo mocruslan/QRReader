@@ -7,12 +7,22 @@ import com.android.volley.Response
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
 
-class RequestHTTP (val context: Context, val url: String, val urlVariable: String, val data: String) {
+class RequestHTTP(
+    val context: Context,
+    val url: String,
+    val urlVariableData: String,
+    val codeData: String,
+    val urlVariableDate: String,
+    val codeDate: String?,
+    val urlVariableTime: String,
+    val codeTime: String?
+) {
 
     private val requestQueue = Volley.newRequestQueue(context);
 
     fun sendPostRequest() {
         val postUrl = buildUrl()
+        print("BuildURL: ${buildUrl()}")
 
         //Build String for the request (also returns a value)
         val request = StringRequest(Request.Method.POST, postUrl,
@@ -27,6 +37,9 @@ class RequestHTTP (val context: Context, val url: String, val urlVariable: Strin
     }
 
     private fun buildUrl(): String {
-        return "$url?$urlVariable=$data"
+        return url
+            .plus('?').plus(urlVariableData).plus('=').plus(codeData)
+            .plus('&').plus(urlVariableDate).plus('=').plus(codeDate)
+            .plus('&').plus(urlVariableTime).plus('=').plus(codeTime)
     }
 }

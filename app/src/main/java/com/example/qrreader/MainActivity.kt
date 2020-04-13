@@ -48,13 +48,19 @@ class MainActivity : AppCompatActivity() {
         if (requestCode == scanRequestCode) {
             if (resultCode == Activity.RESULT_OK) {
                 //Set QR-Code to TextView
-                val codeData = data!!.getStringExtra("content")
+                val codeData = data!!.getStringExtra("data")
                 textView_qr_content.text = codeData
+
+                val codeDate = data!!.getStringExtra("date")
+                val codeTime = data!!.getStringExtra("time")
 
                 //POST the QR-Code to the backend
                 val url: String  = "http://10.0.2.2:5000/qr_data"
-                val urlVariable: String = "content"
-                val requestHTTP: RequestHTTP = RequestHTTP(this@MainActivity, url, urlVariable, codeData)
+                val urlVariableData: String = "data"
+                val urlVariableDate: String = "date"
+                val urlVariableTime: String = "time"
+
+                val requestHTTP: RequestHTTP = RequestHTTP(this@MainActivity, url, urlVariableData, codeData, urlVariableDate, codeDate, urlVariableTime, codeTime)
                 requestHTTP.sendPostRequest()
             } else if (resultCode == Activity.RESULT_CANCELED) {
                 Toast.makeText(this@MainActivity, "The scan was cancelled!", Toast.LENGTH_SHORT).show()

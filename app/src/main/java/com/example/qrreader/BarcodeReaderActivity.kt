@@ -15,6 +15,10 @@ import com.karumi.dexter.listener.PermissionRequest
 import com.karumi.dexter.listener.single.PermissionListener
 import kotlinx.android.synthetic.main.activity_barcode_reader.*
 import me.dm7.barcodescanner.zxing.ZXingScannerView
+import java.time.LocalDate
+import java.time.LocalTime
+import java.time.format.DateTimeFormatter
+import java.util.*
 
 class BarcodeReaderActivity : AppCompatActivity(), ZXingScannerView.ResultHandler{
 
@@ -49,10 +53,14 @@ class BarcodeReaderActivity : AppCompatActivity(), ZXingScannerView.ResultHandle
     }
 
     override fun handleResult(rawResult: Result?) {
-        println("-------------------The Result was successful with ${rawResult!!.text}")
+        val dateFormatter = DateTimeFormatter.ofPattern("dd.MM.yyyy")
+        val timeFormatter = DateTimeFormatter.ofPattern("HH:mm:ss")
+
         val returnIntent = Intent()
-        returnIntent.putExtra("content", rawResult!!.text)
-        //returnIntent.putExtra("time", date.getTime())
+        returnIntent.putExtra("data", rawResult!!.text)
+        returnIntent.putExtra("date", LocalDate.now().format(dateFormatter).toString())
+        returnIntent.putExtra("time", LocalTime.now().format(timeFormatter).toString())
+
         setResult(Activity.RESULT_OK, returnIntent)
         finish()
     }
@@ -61,4 +69,7 @@ class BarcodeReaderActivity : AppCompatActivity(), ZXingScannerView.ResultHandle
         super.onDestroy()
         scannerView.stopCamera()
     }
+
+
+
 }
