@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">QRReader</string>
+
+    <!--MainActivity-->
+    <string name="qr_content">QR content</string>
+    <string name="qr_description">Your code is:</string>
+    <string name="button_scan">Scan</string>
+</resources>
