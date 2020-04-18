@@ -27,7 +27,6 @@ class RequestHTTP(
         //Build String for the request (also returns a value)
         val request = StringRequest(Request.Method.POST, postUrl,
             Response.Listener<String> { response ->
-                println("HTTP-Post response: $response");
                 Toast.makeText(context, "Data uploaded: $response", Toast.LENGTH_SHORT).show();
             },
             Response.ErrorListener { error ->

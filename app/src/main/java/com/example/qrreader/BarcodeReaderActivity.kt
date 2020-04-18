@@ -39,9 +39,7 @@ class BarcodeReaderActivity : AppCompatActivity(), ZXingScannerView.ResultHandle
             override fun onPermissionRationaleShouldBeShown(
                 permission: PermissionRequest?,
                 token: PermissionToken?
-            ) {
-                TODO("Not yet implemented")
-            }
+            ) {}
 
             override fun onPermissionDenied(response: PermissionDeniedResponse?) {
                 Toast.makeText(this@BarcodeReaderActivity, "You must first grand the permission!", Toast.LENGTH_SHORT).show();
@@ -69,7 +67,4 @@ class BarcodeReaderActivity : AppCompatActivity(), ZXingScannerView.ResultHandle
         super.onDestroy()
         scannerView.stopCamera()
     }
-
-
-
 }
