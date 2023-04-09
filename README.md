@@ -25,14 +25,6 @@ This folder contains the source code for the Android app. The app uses the `Zxin
 
 This folder contains the Flask backend server. The server receives POST requests from the Android app and saves the data to a database.
 
-### `models/`
-
-This folder contains the database models used by the Flask backend.
-
-### `requirements.txt`
-
-This file contains a list of required libraries for the Flask backend.
-
 ## License
 
 This app is released under the MIT License. See the LICENSE file for more information.
